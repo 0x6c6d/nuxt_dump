@@ -1,6 +1,6 @@
 import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
-  modules: ["@pinia/nuxt"],
+  modules: ["@pinia/nuxt", "@nuxt/icon"],
   pinia: {
     storesDirs: ["./stores/**"],
   },

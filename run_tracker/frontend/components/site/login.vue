@@ -1,81 +1,3 @@
-<template>
-  <div class="hero bg-base-200 min-h-screen">
-    <div class="hero-content flex-col lg:flex-row-reverse">
-      <div class="text-center lg:text-left">
-        <h1 class="text-5xl font-bold">Login now!</h1>
-        <p class="py-6">
-          Only an email is required. We will send you an OTP to your mail
-          address.
-        </p>
-      </div>
-      <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-        <div class="card-body">
-          <fieldset v-if="!showOtp" class="fieldset">
-            <label class="label">Email</label>
-            <input
-              type="email"
-              class="input"
-              placeholder="Email"
-              v-model="email"
-            />
-            <button
-              class="btn btn-neutral mt-4"
-              @click="sendOtp"
-              :disabled="isLoading"
-            >
-              {{ isLoading ? "Sending..." : "Send OTP" }}
-            </button>
-            <p v-if="emailError" class="text-sm text-red-500">
-              {{ emailError }}
-            </p>
-          </fieldset>
-          <fieldset v-if="showOtp" class="fieldset">
-            <label class="label">OTP</label>
-            <input
-              type="text"
-              class="input"
-              placeholder="123456"
-              v-model="otp"
-            />
-            <div
-              v-if="showOtp"
-              class="flex justify-between mt-4"
-              style="width: clamp(3rem, 20rem, 100%)"
-            >
-              <button
-                @click="resetForm"
-                class="btn btn-outline"
-                @disabled="isLoading"
-              >
-                Back
-              </button>
-              <button
-                @click="login"
-                class="btn btn-neutral"
-                @disabled="isLoading"
-              >
-                {{ isLoading ? "Verifying..." : "Login" }}
-              </button>
-            </div>
-            <p v-if="otpError" class="text-sm text-red-500">{{ otpError }}</p>
-          </fieldset>
-          <p
-            v-if="msg"
-            :class="
-              msg.toLowerCase().includes('error') ||
-              msg.toLowerCase().includes('fail')
-                ? 'text-red-500 text-sm'
-                : 'text-green-600 text-sm'
-            "
-          >
-            {{ msg }}
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import type { OTPResponse } from "pocketbase";
 import { ZodError } from "zod";
@@ -169,3 +91,81 @@ function resetForm() {
   otpError.value = "";
 }
 </script>
+
+<template>
+  <div class="hero bg-base-200 min-h-screen">
+    <div class="hero-content flex-col lg:flex-row-reverse">
+      <div class="text-center lg:text-left">
+        <h1 class="text-5xl font-bold">Login now!</h1>
+        <p class="py-6">
+          Only an email is required. We will send you an OTP to your mail
+          address.
+        </p>
+      </div>
+      <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+        <div class="card-body">
+          <fieldset v-if="!showOtp" class="fieldset">
+            <label class="label">Email</label>
+            <input
+              type="email"
+              class="input"
+              placeholder="Email"
+              v-model="email"
+            />
+            <button
+              class="btn btn-neutral mt-4"
+              @click="sendOtp"
+              :disabled="isLoading"
+            >
+              {{ isLoading ? "Sending..." : "Send OTP" }}
+            </button>
+            <p v-if="emailError" class="text-sm text-red-500">
+              {{ emailError }}
+            </p>
+          </fieldset>
+          <fieldset v-if="showOtp" class="fieldset">
+            <label class="label">OTP</label>
+            <input
+              type="text"
+              class="input"
+              placeholder="123456"
+              v-model="otp"
+            />
+            <div
+              v-if="showOtp"
+              class="flex justify-between mt-4"
+              style="width: clamp(3rem, 20rem, 100%)"
+            >
+              <button
+                @click="resetForm"
+                class="btn btn-outline"
+                @disabled="isLoading"
+              >
+                Back
+              </button>
+              <button
+                @click="login"
+                class="btn btn-neutral"
+                @disabled="isLoading"
+              >
+                {{ isLoading ? "Verifying..." : "Login" }}
+              </button>
+            </div>
+            <p v-if="otpError" class="text-sm text-red-500">{{ otpError }}</p>
+          </fieldset>
+          <p
+            v-if="msg"
+            :class="
+              msg.toLowerCase().includes('error') ||
+              msg.toLowerCase().includes('fail')
+                ? 'text-red-500 text-sm'
+                : 'text-green-600 text-sm'
+            "
+          >
+            {{ msg }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

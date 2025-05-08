@@ -47,6 +47,7 @@ export async function requestSignInOTP(email: string) {
         password: password,
         passwordConfirm: password,
         emailVisibility: true,
+        role: "user",
       });
       console.log(`Created new user for ${email}`);
     } catch (error) {
