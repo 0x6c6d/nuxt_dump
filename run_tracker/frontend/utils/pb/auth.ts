@@ -50,6 +50,8 @@ export async function requestSignInOTP(email: string) {
         role: "user",
       });
       console.log(`Created new user for ${email}`);
+
+      // TODO: create subscription record for new user
     } catch (error) {
       // Check if error is a ClientResponseError and has the unique validation error
       if (error instanceof ClientResponseError) {
